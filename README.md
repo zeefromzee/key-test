@@ -1,6 +1,6 @@
 # Statistical Key Tests ✧*｡٩(ˊᗜˋ*)و✧*｡
 
-Comprehensive test suite for quantum-inspired cryptographic key generation with NIST SP 800-22 statistical validation!
+Comprehensive test suite for cryptographic key generation with NIST SP 800-22 statistical validation!
 
 Perfect for testing your random keys, learning about entropy extraction, and making sure your crypto is actually crypto (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 
