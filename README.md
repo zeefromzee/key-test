@@ -1,4 +1,4 @@
-# quantum-key-tests ✧*｡٩(ˊᗜˋ*)و✧*｡
+# Statistical Key Tests ✧*｡٩(ˊᗜˋ*)و✧*｡
 
 Comprehensive test suite for quantum-inspired cryptographic key generation with NIST SP 800-22 statistical validation!
 
