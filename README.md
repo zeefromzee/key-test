@@ -170,7 +170,7 @@ For more lenient testing (95% confidence):
 ```
 ╔════════════════════════════════════════════════════════════════════════╗
 ║         CRYPTOGRAPHIC KEY ANALYSIS TOOL                                ║
-║         100+ Statistical & Cryptographic Tests                         ║
+║          Statistical & Cryptographic Tests                             ║
 ╚════════════════════════════════════════════════════════════════════════╝
 
 Reading keys from: keys.csv
