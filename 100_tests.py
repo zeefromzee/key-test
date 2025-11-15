@@ -4,8 +4,8 @@ Comprehensive Test Suite for Quantum-Inspired Key Generation System
 This test suite validates all components of the quantum key generation system
 for research paper documentation and cryptographic quality verification.
 
-Tests import and validate the ACTUAL implementation from quantum_key_generator.py
-and statistical_tests.py modules with deterministic fixtures and correctness checks.
+Tests import and validate the ACTUAL implementation from statistical_tests.py 
+module with deterministic fixtures and correctness checks.
 
 Test Coverage:
 - Von Neumann debiasing with expected output verification
@@ -31,16 +31,6 @@ import math
 from scipy.special import erfc, gammaincc
 import sys
 
-# Import the actual implementations
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from quantum_key_generator import (
-    debias_von_neumann,
-    pool_entropy,
-    extract_high_quality_entropy,
-    extract_ultra_high_quality_entropy,
-    calculate_shannon_entropy,
-    Basis
-)
 
 from statistical_tests import (
     monobit_test,
