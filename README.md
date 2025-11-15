@@ -1,233 +1,274 @@
-# Statistical Key Tests ✧*｡٩(ˊᗜˋ*)و✧*｡
+# Cryptographic Key Analysis Tool
 
-Comprehensive test suite for cryptographic key generation with NIST SP 800-22 statistical validation!
+A comprehensive Python tool that performs **34 statistical and cryptographic tests** on cryptographic keys. This tool implements the complete NIST Statistical Test Suite (15 tests) and additional advanced randomness tests (16+ tests) to evaluate the quality and security of cryptographic keys.
 
-Perfect for testing your random keys, learning about entropy extraction, and making sure your crypto is actually crypto (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+**Note:** Some tests require minimum bit lengths (e.g., 1024+ bits for matrix rank test, 387,840 bits for Maurer's Universal test). Tests that cannot run due to insufficient bits will be automatically SKIPPED and won't count against your key's pass/fail rate.
 
----
+## Features
 
-## What's Inside? ⋆｡˚ ☁︎ ˚｡⋆
+- **Complete NIST SP 800-22 Statistical Test Suite** (15 tests)
+  - Frequency (Monobit) Test
+  - Block Frequency Test
+  - Runs Test
+  - Longest Run of Ones Test
+  - Binary Matrix Rank Test
+  - Discrete Fourier Transform (Spectral) Test
+  - Non-overlapping Template Matching Test
+  - Overlapping Template Matching Test
+  - Maurer's Universal Statistical Test
+  - Linear Complexity Test
+  - Serial Test
+  - Approximate Entropy Test
+  - Cumulative Sums Test
+  - Random Excursions Test
+  - Random Excursions Variant Test
 
-### Core Components ✮⋆˙
+- **Additional Cryptographic Randomness Tests** (16 tests)
+  - Autocorrelation Test
+  - Shannon Entropy Test
+  - Chi-Square Uniformity Test
+  - Poker Test
+  - Gap Test
+  - Collision Test
+  - Birthday Spacing Test
+  - Bit Independence Test
+  - Avalanche Effect Test
+  - Strict Avalanche Criterion
+  - Run Distribution Test
+  - Coupon Collector's Test
+  - Permutation Test
+  - Periodicity Detection Test
+  - Extended Maurer's Universal Test
+  - Lempel-Ziv Complexity Test
 
-**Von Neumann Debiasing** ໒꒰ྀི ˶• ˕ •˶ ꒱ྀིა  
-Takes biased random bits and makes them perfectly balanced!
-- `01` pairs → output `0`
-- `10` pairs → output `1`  
-- `00` and `11` → discarded (they're sus)
+- **Key Quality Metrics**
+  - Key Strength Estimation
+  - Uniformity Analysis
+  - Complexity Score
 
-**Entropy Pooling** (˶ᵔ ᵕ ᵔ˶)  
-XORs multiple entropy sources together for maximum randomness power!
+## Quick Start Guide
 
-**Multi-Stage Extraction** ⸜(｡˃ ᵕ ˂ )⸝  
-- High-quality: SHA-512 based extraction
-- Ultra-quality: Multiple rounds for extra paranoid security
+### 1. Prepare Your CSV File
 
-**16 NIST Statistical Tests** ☆ﾟ.*･｡ﾟ  
-All the tests from NIST SP 800-22 to validate your keys aren't predictable!
+Create a CSV file with your cryptographic keys, one key per row:
 
----
-
-## Quick Start (ง •_•)ง
-
-```bash
-# Install dependencies
-pip install pytest numpy pandas scipy hypothesis
-
-# Run all tests
-pytest test_quantum_key_generator.py -v
-
-# Run with benchmarks
-pytest test_quantum_key_generator.py -v --benchmark-enable
-
-# Run specific test class
-pytest test_quantum_key_generator.py::TestVonNeumannDebiasing -v
+```csv
+3a4f2e8b9c1d7f6a5e3b8c9d2f1a4e7b3c6d9f2a5e8b1c4d7f9a2e5b8c1d3f6a
+7f2a5e8b1c4d7f9a2e5b8c1d3f6a9c2e5b8f1d4a7c9e2b5f8d1a4c7e9b2f5a8d1
+9c2e5b8f1d4a7c9e2b5f8d1a4c7e9b2f5a8d1c4e7b9f2a5d8c1e4b7a9f2c5e8b1
 ```
 
----
+**Supported key formats:**
+- `hex` - Hexadecimal (default)
+- `binary` - Binary string (e.g., "10110101...")
+- `base64` - Base64 encoded
+- `decimal` - Decimal number
 
-## Test Coverage ･ﾟ( ﾉд`ﾟ)
+### 2. Configure the Tool
 
-### Von Neumann Debiasing Tests ✧˖°
-- Verifies 01→0 and 10→1 conversions
-- Checks 00/11 pair discarding
-- Deterministic output validation
-- Size reduction verification
-- Property-based testing with random inputs
-
-### Entropy Pooling Tests ♡(ᐢ ᴗ ᐢ )
-- XOR correctness: `A ⊕ B = expected`
-- Mathematical properties: 
-  - `A ⊕ A = 0` (identity)
-  - `A ⊕ 0 = A` (zero property)
-  - `A ⊕ B = B ⊕ A` (commutative)
-- Multiple source pooling
-
-### Multi-Stage Extraction Tests ⋆⁺₊⋆
-- Deterministic extraction (same input = same output)
-- Output length validation (SHA-512 = 64 bytes)
-- Small input expansion
-- Bit distribution balance (45-55% ones)
-
-### All 16 NIST Tests ✧･ﾟ: *✧･ﾟ:*
-Each test validated with:
-- Balanced sequences (should pass) (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
-- Biased sequences (should fail) (｡•́‿•̀｡)
-- Random data (realistic scenarios) ໒꒰ྀི´ ˘ ` ꒱ྀīა
-
-| Test | What It Checks |
-|------|----------------|
-| Monobit | Equal 1s and 0s |
-| Runs | Bit flip frequency |
-| Longest Run | Streak patterns |
-| Spectral | Hidden periodicities (FFT) |
-| Block Frequency | Local balance |
-| Cumulative Sums | Random walk behavior |
-| Chi-Square | Basic distribution |
-| Serial Correlation | Bit independence |
-| Poker | Pattern distribution |
-| Gap | Spacing analysis |
-| Autocorrelation | Distance correlation |
-| Shannon Entropy | Information content |
-| Matrix Rank | Linear independence |
-| Linear Complexity | Unpredictability |
-| Serial (m=3) | Advanced pattern test |
-| Maurer's Universal | Compressibility |
-
-### Cryptographic Quality Tests ✨
-- **Avalanche effect**: Single bit change → ~50% output change
-- **Key uniqueness**: 100 keys generated, 100 unique
-- **Hamming distance**: Sequential keys differ by ~50%
-- **Bit balance**: All keys have 45-55% ones
-
-### Integration Tests (っ◔◡◔)っ
-- Full pipeline: visual entropy → debias → pool → extract
-- CSV persistence roundtrip
-- Length invariants maintained
-- Low correlation between sequential keys
-
----
-
-## Test Statistics ⋆｡˚ ☁︎ ˚｡⋆
-
-```
-Total Tests: 100+
-Coverage Areas:
-- Unit tests: Von Neumann, pooling, extraction ✧
-- Statistical tests: All 16 NIST SP 800-22 ☆
-- Cryptographic: Avalanche, uniqueness, Hamming ♡
-- Integration: End-to-end pipelines (˶ᵔ ᵕ ᵔ˶)
-- Property-based: Random input validation ✮
-- Performance: Benchmarks included ⸜(｡˃ ᵕ ˂ )⸝
-```
-
----
-
-
----
-
-## Why These Tests Matter ໒꒰ྀི ˶• ˕ •˶ ꒱ྀīა
-
-### For Researchers ✧
-- Validates your entropy extraction methods
-- Proves statistical properties mathematically
-- Demonstrates NIST compliance
-- Provides reproducible results
-
-### For Developers ⸜(｡˃ ᵕ ˂ )⸝
-- Catches bugs in crypto implementations
-- Verifies key generation quality
-- Prevents weak keys from being used
-- Ensures avalanche effect works
-
-### For Security ☆ﾟ.*･｡ﾟ
-- Tests that keys are truly random
-- Validates no hidden patterns exist
-- Checks cryptographic properties hold
-- Ensures keys can't be predicted
-
----
-
-## Understanding Test Results ･ﾟ( ﾉд`ﾟ)
+Open `crypto_key_analyzer.py` and modify the **CONFIGURATION** section at the top:
 
 ```python
-# Good test output ✧
-PASSED test_monobit_balanced_passes
-PASSED test_avalanche_effect_verified  
-PASSED test_key_uniqueness_statistical
-
-# If you see failures (╥﹏╥)
-FAILED test_monobit_balanced_passes
-→ Your entropy source is biased!
-
-FAILED test_avalanche_effect_verified
-→ Hash function not working properly!
-
-FAILED test_key_uniqueness_statistical
-→ Keys are repeating - major problem!
+CONFIG = {
+    # Input file settings
+    'csv_file': 'keys.csv',              # ← Change this to your CSV file path
+    'key_column': 0,                      # ← Column index (0 = first column)
+    'key_encoding': 'hex',                # ← Change if using different format
+    
+    # Test parameters
+    'significance_level': 0.01,           # ← Alpha level (0.01 = 99% confidence)
+    'min_bit_length': 128,                # ← Minimum bits required
+    
+    # Output settings
+    'output_dir': 'crypto_analysis_results',
+    'generate_plots': True,               # ← Set False to skip plots
+    'save_csv_report': True,              # ← Set False to skip CSV reports
+    'verbose': True,                       # ← Set False for less output
+}
 ```
 
----
-
-## Running Specific Test Suites ♪(´▽｀)
+### 3. Run the Analysis
 
 ```bash
-# Just Von Neumann tests
-pytest test_quantum_key_generator.py::TestVonNeumannDebiasing -v
-
-# Just NIST statistical tests
-pytest test_quantum_key_generator.py::TestNISTStatisticalTests -v
-
-# Just cryptographic quality
-pytest test_quantum_key_generator.py::TestCryptographicQuality -v
-
-# Integration tests only
-pytest test_quantum_key_generator.py::TestIntegration -v
-
-# With detailed output
-pytest test_quantum_key_generator.py -vv
-
-# Stop on first failure
-pytest test_quantum_key_generator.py -x
+python crypto_key_analyzer.py
 ```
 
----
+### 4. Review Results
 
-## For Research Papers (˶ᵔ ᵕ ᵔ˶)
+The tool generates:
+- **Console output**: Summary and detailed test results
+- **CSV reports**: `crypto_analysis_results/key_X_detailed_report.csv`
+- **Plots**: `crypto_analysis_results/key_X_analysis.png`
+- **Overall summary**: `crypto_analysis_results/overall_summary.csv`
 
-This test suite provides:
-- **Reproducible results**: All tests are deterministic ✧
-- **Statistical validation**: NIST SP 800-22 compliance ☆
-- **Cryptographic proofs**: Avalanche, uniqueness, Hamming distance ♡
-- **Performance metrics**: Benchmark data included ⋆
-- **Comprehensive coverage**: 100+ tests across all components ✮
+## Understanding the Results
 
-Perfect for documenting your key generation system in academic papers!
+### Test Results
 
----
+Each test produces a **p-value** between 0 and 1:
+- **p-value ≥ 0.01** (default): PASS ✓ - Key appears random
+- **p-value < 0.01**: FAIL ✗ - Key shows non-random patterns
+- **SKIP** ⊘ - Test requires more bits than available (doesn't count as pass or fail)
 
-## Dependencies ･ﾟ✧
+### Key Quality Scores
+
+- **Key Strength**: 0-100% (higher is better, aim for >70%)
+- **Uniformity**: 0-100% (higher is better, aim for >70%)
+- **Complexity**: 0-100% (higher is better, aim for >70%)
+
+### What Does a FAIL Mean?
+
+A failed test indicates the key exhibits patterns that deviate from true randomness. This could mean:
+- Weak key generation algorithm
+- Insufficient entropy source
+- Potential security vulnerability
+
+**Recommendation**: Keys that fail multiple tests should not be used for cryptographic purposes.
+
+## Customization Guide
+
+### Change Input File Format
+
+If your keys are in binary format:
+```python
+'key_encoding': 'binary',
+```
+
+If your keys are in a different column:
+```python
+'key_column': 2,  # Third column (0-indexed)
+```
+
+### Adjust Test Sensitivity
+
+For stricter testing (99.9% confidence):
+```python
+'significance_level': 0.001,
+```
+
+For more lenient testing (95% confidence):
+```python
+'significance_level': 0.05,
+```
+
+### Modify Test Parameters
+
+```python
+'block_size': 256,              # Larger blocks for longer keys
+'template_size': 12,            # Longer templates for pattern matching
+'serial_block_length': 32,      # Larger blocks for serial test
+```
+
+### Disable Plots (Faster Analysis)
+
+```python
+'generate_plots': False,
+```
+
+## Example Output
 
 ```
-pytest >= 7.0.0
-numpy >= 1.20.0
-pandas >= 1.3.0
-scipy >= 1.7.0
-hypothesis >= 6.0.0
-pytest-benchmark >= 3.4.0
+╔════════════════════════════════════════════════════════════════════════╗
+║         CRYPTOGRAPHIC KEY ANALYSIS TOOL                                ║
+║         100+ Statistical & Cryptographic Tests                         ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+Reading keys from: keys.csv
+Found 3 key(s) to analyze
+
+================================================================================
+CRYPTOGRAPHIC KEY ANALYSIS SUMMARY
+================================================================================
+Key ID: KEY_1
+Bit Length: 256
+Total Tests: 34
+Tests Run: 29
+Tests Skipped: 5 (insufficient bits for these tests)
+Tests Passed: 19 (65.52% of applicable tests)
+Tests Failed: 10 (34.48% of applicable tests)
+Significance Level: 0.01
+================================================================================
 ```
 
+## Requirements
 
-## License & Usage ⸜(｡˃ ᵕ ˂ )⸝
+- Python 3.7+
+- NumPy
+- SciPy
+- Pandas
+- Matplotlib
 
-Free to use for:
-- Research projects ✧
-- Learning about cryptography ☆
-- Testing your own key generators ♡
-- Academic papers (please cite!) (ˆ⌣ˆ)
+Install dependencies:
+```bash
+pip install numpy scipy pandas matplotlib
+```
 
----
+## Tips for Best Results
 
-Made with ♡ for secure randomness testing ໒꒰ྀི ˶• ˕ •˶ ꒱ྀīა
+1. **Use sufficient key length**: Minimum 128 bits recommended, 256+ bits ideal
+2. **Test multiple keys**: Analyze several keys to identify systemic issues
+3. **Review all failures**: Even one failed test can indicate problems
+4. **Compare results**: Test known-good keys as a baseline
+5. **Update configurations**: Adjust test parameters based on your key length
 
-*Because predictable keys are scary* (ﾉД`)･ﾟ･｡
+## Troubleshooting
+
+**"No keys found in CSV file"**
+- Check the file path in CONFIG
+- Verify the CSV file exists
+- Ensure keys are in the correct column
+
+**"Key has only X bits (minimum 128 required)"**
+- Your key is too short for reliable analysis
+- Reduce `min_bit_length` or use longer keys
+
+**"Error converting key to binary"**
+- Check that `key_encoding` matches your key format
+- Verify keys are valid hex/binary/base64
+
+## Advanced Usage
+
+### Analyzing Different Key Formats
+
+**Binary keys:**
+```python
+CONFIG = {
+    'csv_file': 'binary_keys.csv',
+    'key_encoding': 'binary',
+    ...
+}
+```
+
+**Base64 keys:**
+```python
+CONFIG = {
+    'csv_file': 'base64_keys.csv',
+    'key_encoding': 'base64',
+    ...
+}
+```
+
+### Batch Analysis
+
+Place all your keys in one CSV file (one per row), and the tool will analyze them all sequentially.
+
+## Security Notice
+
+This tool is for **analysis only**. It does not:
+- Generate cryptographic keys
+- Store or transmit keys
+- Modify your keys
+
+**Always protect your cryptographic keys.** Do not share the CSV files containing real production keys.
+
+## License
+
+This tool is provided as-is for cryptographic analysis purposes.
+
+## Support
+
+For issues or questions:
+1. Check that all configuration settings are correct
+2. Verify your CSV file format
+3. Ensure all dependencies are installed
+4. Review the console output for specific error messages
