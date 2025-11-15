@@ -1,0 +1,158 @@
+================================================================================
+QUICK START GUIDE - Cryptographic Key Analysis Tool
+================================================================================
+
+HOW TO USE THIS TOOL:
+---------------------
+
+STEP 1: Prepare your CSV file
+   - Create a CSV file with your cryptographic keys (one key per row)
+   - Default file: keys.csv
+   - Format: hexadecimal (you can change this)
+
+   Example keys.csv:
+   3a4f2e8b9c1d7f6a5e3b8c9d2f1a4e7b
+   7f2a5e8b1c4d7f9a2e5b8c1d3f6a9c2e
+   9c2e5b8f1d4a7c9e2b5f8d1a4c7e9b2f
+
+STEP 2: Configure the tool (OPTIONAL)
+   - Open crypto_key_analyzer.py
+   - Find the CONFIG section at the top (lines 25-42)
+   - Modify these settings:
+
+   CONFIG = {
+       'csv_file': 'keys.csv',         # ← Change to your CSV filename
+       'key_column': 0,                 # ← Column index (0 = first column)
+       'key_encoding': 'hex',           # ← 'hex', 'binary', 'base64', 'decimal'
+       'significance_level': 0.01,      # ← Test strictness (0.01 = 99% confidence)
+       'generate_plots': True,          # ← Set False to skip plots
+       'verbose': True,                 # ← Set False for less output
+   }
+
+STEP 3: Run the analysis
+   python crypto_key_analyzer.py
+
+STEP 4: Review results
+   - Console shows summary and detailed results
+   - Files created in crypto_analysis_results/:
+     * key_KEY_X_detailed_report.csv (detailed test results)
+     * key_KEY_X_analysis.png (statistical plots)
+     * overall_summary.csv (summary of all keys)
+
+================================================================================
+UNDERSTANDING RESULTS:
+================================================================================
+
+Test Status:
+  ✓ PASS = p-value ≥ 0.01 (key appears random)
+  ✗ FAIL = p-value < 0.01 (key shows non-random patterns)
+  ⊘ SKIP = insufficient bits for this test (not counted in pass/fail rate)
+
+Quality Scores (higher is better):
+  - Key Strength: 0-100% (aim for >70%)
+  - Uniformity: 0-100% (aim for >70%)
+  - Complexity: 0-100% (aim for >70%)
+
+What to do if tests FAIL:
+  - Multiple failures = weak key, do not use for cryptography
+  - Few failures = investigate key generation algorithm
+  - Review the detailed CSV report for specific issues
+
+================================================================================
+COMMON MODIFICATIONS:
+================================================================================
+
+1. Different CSV file:
+   CONFIG['csv_file'] = 'my_keys.csv'
+
+2. Binary format keys:
+   CONFIG['key_encoding'] = 'binary'
+
+3. Keys in column 2:
+   CONFIG['key_column'] = 1  # (0-indexed, so 1 = 2nd column)
+
+4. Stricter testing:
+   CONFIG['significance_level'] = 0.001  # 99.9% confidence
+
+5. Faster analysis (no plots):
+   CONFIG['generate_plots'] = False
+
+6. Less output:
+   CONFIG['verbose'] = False
+
+================================================================================
+TESTS PERFORMED (34 tests per key):
+================================================================================
+
+NIST Statistical Test Suite (15 tests):
+  1. Frequency (Monobit) Test
+  2. Block Frequency Test
+  3. Runs Test
+  4. Longest Run of Ones Test
+  5. Binary Matrix Rank Test
+  6. Discrete Fourier Transform Test
+  7. Non-overlapping Template Matching Test
+  8. Overlapping Template Matching Test
+  9. Maurer's Universal Statistical Test
+  10. Linear Complexity Test
+  11. Serial Test
+  12. Approximate Entropy Test
+  13. Cumulative Sums Test
+  14. Random Excursions Test
+  15. Random Excursions Variant Test
+
+Additional Tests (16 tests):
+  - Autocorrelation Test
+  - Shannon Entropy Test
+  - Chi-Square Test
+  - Poker Test
+  - Gap Test
+  - Collision Test
+  - Birthday Spacing Test
+  - Bit Independence Test
+  - Avalanche Effect Test
+  - Strict Avalanche Criterion
+  - Run Distribution Test
+  - Coupon Collector's Test
+  - Permutation Test
+  - Periodicity Detection
+  - Extended Maurer's Test
+  - Lempel-Ziv Complexity
+
+Quality Metrics (3 tests):
+  - Key Strength Estimation
+  - Uniformity Analysis
+  - Complexity Score
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+Problem: "No keys found in CSV file"
+Solution: 
+  - Check CONFIG['csv_file'] path is correct
+  - Verify CSV file exists
+  - Check CONFIG['key_column'] matches your CSV structure
+
+Problem: "Key has only X bits (minimum 128 required)"
+Solution:
+  - Use longer keys (256 bits recommended)
+  - OR reduce CONFIG['min_bit_length']
+
+Problem: "Error converting key to binary"
+Solution:
+  - Verify CONFIG['key_encoding'] matches your key format
+  - Check keys are valid hex/binary/base64 strings
+
+================================================================================
+SECURITY WARNING:
+================================================================================
+
+- This tool ANALYZES keys, it does not generate or store them
+- Do NOT share CSV files containing production keys
+- Failed tests indicate potential security vulnerabilities
+- Always use cryptographically secure key generation methods
+
+================================================================================
+For detailed documentation, see README.md
+================================================================================
