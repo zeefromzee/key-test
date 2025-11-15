@@ -1,12 +1,12 @@
 # Cryptographic Key Analysis Tool
 
-A comprehensive Python tool that performs **34 statistical and cryptographic tests** on cryptographic keys. This tool implements the complete NIST Statistical Test Suite (15 tests) and additional advanced randomness tests (16+ tests) to evaluate the quality and security of cryptographic keys.
+A comprehensive Python tool that performs statistical and cryptographic tests on cryptographic keys. This tool implements the complete NIST Statistical Test Suite (15 tests) and additional advanced randomness tests (16+ tests) to evaluate the quality and security of cryptographic keys.
 
 **Note:** Some tests require minimum bit lengths (e.g., 1024+ bits for matrix rank test, 387,840 bits for Maurer's Universal test). Tests that cannot run due to insufficient bits will be automatically SKIPPED and won't count against your key's pass/fail rate.
 
 ## Features
 
-- **Complete NIST SP 800-22 Statistical Test Suite** (15 tests)
+- **Complete NIST SP 800-22 Statistical Test Suite** 
   - Frequency (Monobit) Test
   - Block Frequency Test
   - Runs Test
@@ -23,7 +23,7 @@ A comprehensive Python tool that performs **34 statistical and cryptographic tes
   - Random Excursions Test
   - Random Excursions Variant Test
 
-- **Additional Cryptographic Randomness Tests** (16 tests)
+- **Additional Cryptographic Randomness Tests** 
   - Autocorrelation Test
   - Shannon Entropy Test
   - Chi-Square Uniformity Test
