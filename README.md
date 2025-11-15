@@ -159,7 +159,7 @@ For more lenient testing (95% confidence):
 'serial_block_length': 32,      # Larger blocks for serial test ✧
 ```
 
-### Disable Plots (Faster Analysis) ⚡
+### Disable Plots (Faster Analysis)
 
 ```python
 'generate_plots': False,  # zoom zoom~
