@@ -1,10 +1,10 @@
 """
-Comprehensive Test Suite for Quantum-Inspired Key Generation System
+Comprehensive Test Suite for Key Generation System
 ====================================================================
-This test suite validates all components of the quantum key generation system
+This test suite validates all components of the key generation system
 for research paper documentation and cryptographic quality verification.
 
-Tests import and validate the ACTUAL implementation from statistical_tests.py 
+Tests import and validate the ACTUAL implementation from NIST_tests_with_percentage.py
 module with deterministic fixtures and correctness checks.
 
 Test Coverage:
