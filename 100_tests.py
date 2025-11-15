@@ -1,5 +1,6 @@
 """
 Comprehensive Test Suite for Key Generation System
+To begin pls save ur keys to a csv file and name it enc.csv
 ====================================================================
 This test suite validates all components of the key generation system
 for research paper documentation and cryptographic quality verification.
