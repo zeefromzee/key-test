@@ -1,5 +1,5 @@
 """
-accurate_randomness_tests.py
+To begin pls save ur keys to a csv file and name it enc.csv
 ==============================================================
 Comprehensive and batch-based randomness test suite for keys from enc.csv.
 
